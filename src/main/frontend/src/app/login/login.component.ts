@@ -25,6 +25,7 @@ export class LoginComponent implements OnInit {
       this.invalidLogin=false;
       //navigate to welcome page if logged successful
       this.router.navigate(['welcome' , this.username]);
+      console.log("logged in")
     }
     else
       this.invalidLogin=true
