@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoDataService} from "../service/data/todo-data.service";
 import {Todo} from "./todo.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-list-todos',
@@ -11,7 +12,8 @@ export class ListTodosComponent implements OnInit {
 
   todos : Todo[]=[]
   message: string;
-  constructor(private todoService : TodoDataService) { }
+  constructor(private todoService : TodoDataService
+              ,private route:Router ) { }
 
   ngOnInit() {
     // this.todoService.onTodoRemoved.subscribe(this.refreshTodos())
@@ -34,5 +36,9 @@ export class ListTodosComponent implements OnInit {
     this.todoService.retrieveAllTodos('mohannad').subscribe(
       (response : Todo[]) =>{this.todos=response}
     )
+  }
+
+  updateTodo(id) {
+    this.route.navigate(['todos',id])
   }
 }
