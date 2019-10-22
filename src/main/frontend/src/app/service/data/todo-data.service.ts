@@ -18,4 +18,8 @@ export class TodoDataService {
   deleteTodo(id){
     return this.http.delete(`http://localhost:8080/users/mohannad/todos/${id}`);
   }
+
+  getTodo(id){
+    return this.http.get(`http://localhost:8080/users/mohannad/todos/${id}`);
+  }
 }
