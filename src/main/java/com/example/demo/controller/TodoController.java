@@ -19,6 +19,8 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+
+
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAllTodos(@PathVariable  String username){
         return todoService.getAllTodos(username);
@@ -27,6 +29,11 @@ public class TodoController {
     @DeleteMapping("/users/{username}/todos/{id}")
     public void deleteTodo(@PathVariable  String username , @PathVariable String id){
          todoService.deleteById(Long.parseLong(id));
+    }
+
+    @GetMapping("/users/{username}/todos/{id}")
+    public Todo getTodo(@PathVariable  String username , @PathVariable String id){
+        return todoService.getTodo(Long.parseLong(id));
     }
 
 }
