@@ -11,5 +11,6 @@ public interface TodoService  {
     List<Todo> getAllTodos(String username);
     void deleteById(long id);
     Todo save(Todo todo);
+    Todo getTodo(long id);
 }
 
