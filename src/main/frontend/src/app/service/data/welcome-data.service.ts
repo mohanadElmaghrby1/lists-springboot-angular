@@ -19,6 +19,6 @@ export class WelcomeDataService {
   }
 
   getWelcomeMessageWithPathVariable(name){
-    return this.httpClient.get('http://localhost:8080/hello-world-bean/'+name);
+    return this.httpClient.get(`http://localhost:8080/hello-world-bean/${name}`);
   }
 }
