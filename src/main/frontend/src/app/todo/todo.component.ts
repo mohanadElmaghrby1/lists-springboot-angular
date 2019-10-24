@@ -30,6 +30,12 @@ export class TodoComponent implements OnInit {
   }
 
   saveTodo() {
-
+    this.todoService.saveOrUpdateTodo(this.todo).subscribe(
+      (response:Todo) =>{
+        console.log("updated : "+response)
+      }, error => {
+        console.log(error)
+      }
+    )
   }
 }
