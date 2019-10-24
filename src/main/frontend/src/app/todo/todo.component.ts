@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {TodoDataService} from "../service/data/todo-data.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Todo} from "../list-todos/todo.model";
 
 @Component({
@@ -13,7 +13,8 @@ export class TodoComponent implements OnInit {
   id
   todo:Todo
   constructor(private todoService :TodoDataService
-              ,private route :ActivatedRoute) { }
+              ,private route :ActivatedRoute
+              ,private router :Router ) { }
 
   ngOnInit() {
     this.id= this.route.snapshot.params['id'];
@@ -33,6 +34,8 @@ export class TodoComponent implements OnInit {
     this.todoService.saveOrUpdateTodo(this.todo).subscribe(
       (response:Todo) =>{
         console.log("updated : "+response)
+        this.router.navigate(['todos'])
+
       }, error => {
         console.log(error)
       }
