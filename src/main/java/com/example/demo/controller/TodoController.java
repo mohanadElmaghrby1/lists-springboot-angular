@@ -19,8 +19,6 @@ public class TodoController {
         this.todoService = todoService;
     }
 
-
-
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAllTodos(@PathVariable  String username){
         return todoService.getAllTodos(username);
@@ -35,5 +33,12 @@ public class TodoController {
     public Todo getTodo(@PathVariable  String username , @PathVariable String id){
         return todoService.getTodo(Long.parseLong(id));
     }
+
+    @PostMapping("/users/{username}/todos")
+    public Todo saveOrUpdate(@PathVariable String username , @RequestBody Todo todo){
+        return todoService.save(todo);
+    }
+
+
 
 }
