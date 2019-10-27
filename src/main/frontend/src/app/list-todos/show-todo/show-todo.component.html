@@ -1,0 +1,21 @@
+<!--<div class="jumbotron text-center">-->
+<!--  <h1>My First Bootstrap Page</h1>-->
+<!--  <p>Resize this responsive page to see the effect!</p>-->
+<!--</div>-->
+
+<div *ngIf="todo" class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <h3>desc</h3>
+      <p>{{todo.description}}</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>date</h3>
+      <p>{{todo.targetDate}}</p>
+    </div>
+    <div class="col-sm-4">
+      <h3>is completed?</h3>
+      <p>{{todo.done}}</p>
+    </div>
+  </div>
+</div>
