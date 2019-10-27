@@ -1,3 +1,8 @@
 div .card{
   margin: 20px;
 }
+div .card:hover{
+  background-color: #d0eaff;
+}
+
+
