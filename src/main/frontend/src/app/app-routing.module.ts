@@ -7,6 +7,7 @@ import {ListTodosComponent} from "./list-todos/list-todos.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {RouteGuardService} from "./service/route-guard.service";
 import {TodoComponent} from "./todo/todo.component";
+import {BlogComponent} from "./blog/blog.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: '' , component : LoginComponent, canActivate:[RouteGuardService]} ,
   { path : 'welcome/:username' , component : WelcomeComponent, canActivate:[RouteGuardService]} ,
   { path : 'todos' , component : ListTodosComponent, canActivate:[RouteGuardService]} ,
+  { path : 'blogs' , component : BlogComponent, canActivate:[RouteGuardService]} ,
   { path : 'todos/:id' , component : TodoComponent, canActivate:[RouteGuardService]} ,
 
   { path : '**' , component : ErrorComponent} // it should be the last one

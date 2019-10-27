@@ -14,6 +14,9 @@ import { LogoutComponent } from './logout/logout.component';
 import {HttpClientModule} from "@angular/common/http";
 import { TodoComponent } from './todo/todo.component';
 import { ShowTodoComponent } from './list-todos/show-todo/show-todo.component';
+import { Menu2Component } from './menu2/menu2.component';
+import { Footer2Component } from './footer2/footer2.component';
+import { BlogComponent } from './blog/blog.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ShowTodoComponent } from './list-todos/show-todo/show-todo.component';
     FooterComponent,
     LogoutComponent,
     TodoComponent,
-    ShowTodoComponent
+    ShowTodoComponent,
+    Menu2Component,
+    Footer2Component,
+    BlogComponent
   ],
   imports: [
     BrowserModule,
