@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
   templateUrl: './list-todos.component.html',
   styleUrls: ['./list-todos.component.css']
 })
-export class ListTodosComponent implements OnInit {
+export class ListTodosComponent implements OnInit{
 
   todos : Todo[]=[]
   message: string;
@@ -19,6 +19,8 @@ export class ListTodosComponent implements OnInit {
     // this.todoService.onTodoRemoved.subscribe(this.refreshTodos())
     this.refreshTodos()
   }
+
+
 
   deleteTodo(id: number) {
     this.todoService.deleteTodo(id).subscribe(
@@ -40,5 +42,11 @@ export class ListTodosComponent implements OnInit {
 
   updateTodo(id) {
     this.route.navigate(['todos',id])
+  }
+
+  getTodo(todo: Todo) {
+
+    this.todoService.onTodoSelected.emit(todo)
+    console.log("clicked :" + todo.description +", id:"+todo.id)
   }
 }
