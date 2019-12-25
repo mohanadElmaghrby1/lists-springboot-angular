@@ -30,4 +30,10 @@ public class HelloWorldController {
     public HellowWorldBean HelloWorldbeanPAthVar(@PathVariable String name){
         return new HellowWorldBean(String.format("Hello World , %s" , name));
     }
+
+    ///hello-world/path-variable/in28minutes
+    @GetMapping(path = "/hello-world/path-variable/{name}")
+    public HellowWorldBean helloWorldPathVariable(@PathVariable String name) {
+        return new HellowWorldBean(String.format("Hello World, %s", name));
+    }
 }
