@@ -20,7 +20,7 @@ export class WelcomeComponent implements OnInit {
   }
 
   executeWelcome() {
-    console.log(this.welcomeService.getWelcomeMessageWithPathVariable(this.name).subscribe(
+    console.log(this.welcomeService.executeHelloWorldServiceWithPathVariable(this.name).subscribe(
       (response : HelloWorldBean) => this.handleSuccessFulResponse(response),
       error => this.handleErorrResponse(error)
     ))

@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Todo} from "../../list-todos/todo.model";
 import {TODO_URL} from "../../constant/app.constant";
 
@@ -15,7 +15,12 @@ export class TodoDataService {
   constructor(private http: HttpClient) { }
 
   retrieveAllTodos(username){
-    return this.http.get(`${TODO_URL}users/${username}/todos`);
+    let basicAuthHeader = this.createBasicAuthHeader();
+    let headers = new HttpHeaders({
+      Authorization : basicAuthHeader
+    })
+
+    return this.http.get(`${TODO_URL}users/${username}/todos` , {headers});
   }
 
   deleteTodo(id){
@@ -28,5 +33,12 @@ export class TodoDataService {
 
   saveOrUpdateTodo(todo){
     return this.http.post(`${TODO_URL}users/mohannad/todos/`,todo);
+  }
+
+  createBasicAuthHeader():string{
+    let username = 'mohannad'
+    let password= '123'
+    let basicHeader = 'Basic '+window.btoa(username+':'+password)
+    return basicHeader;
   }
 }
