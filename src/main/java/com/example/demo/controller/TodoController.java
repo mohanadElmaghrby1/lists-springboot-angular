@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Todo;
 import com.example.demo.service.TodoService;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +22,7 @@ public class TodoController {
         this.todoService = todoService;
     }
 
+    @PreAuthorize("#username == authentication.name")
     @GetMapping("/users/{username}/todos")
     public List<Todo> getAllTodos(@PathVariable  String username){
         return todoService.getAllTodos(username);
