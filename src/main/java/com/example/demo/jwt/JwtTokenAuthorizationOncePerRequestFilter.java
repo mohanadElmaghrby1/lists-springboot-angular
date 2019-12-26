@@ -58,6 +58,8 @@ public class JwtTokenAuthorizationOncePerRequestFilter extends OncePerRequestFil
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
             UserDetails userDetails = this.jwtInMemoryUserDetailsService.loadUserByUsername(username);
+            //logging the requested resources user roles
+            userDetails.getAuthorities().stream().forEach( role -> logger.warn("logged user has role : "+role));
 
             if (jwtTokenUtil.validateToken(jwtToken, userDetails)) {
                 UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

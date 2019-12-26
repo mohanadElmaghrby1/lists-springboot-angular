@@ -38,8 +38,8 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
-            .userDetailsService(jwtInMemoryUserDetailsService)
-            .passwordEncoder(passwordEncoderBean());
+                .userDetailsService(jwtInMemoryUserDetailsService)
+                .passwordEncoder(passwordEncoderBean());
     }
 
     @Bean
@@ -56,42 +56,44 @@ public class JWTWebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
-            .csrf().disable()
+                .csrf().disable()
                 //if user unauthorized send him to jwtUnAuthorizedResponseAuthentication EntryPoint
-            .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint).and()
+                .exceptionHandling().authenticationEntryPoint(jwtUnAuthorizedResponseAuthenticationEntryPoint)
+                .and()
                 //for creating stateless app we dont want sessions because we are using restfull api
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeRequests()
-            .anyRequest().authenticated();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .anyRequest().authenticated();
 
         //config filter for all requests
-       httpSecurity
-            .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
+        httpSecurity
+                .addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
 
         httpSecurity
-            .headers()
-            .frameOptions().sameOrigin()  //H2 Console Needs this setting
-            .cacheControl(); //disable caching
+                .headers()
+                .frameOptions().sameOrigin()  //H2 Console Needs this setting
+                .cacheControl(); //disable caching
     }
 
 
     @Override
     public void configure(WebSecurity webSecurity) throws Exception {
         webSecurity
-            .ignoring()
-            .antMatchers(
-                HttpMethod.POST,
-                authenticationPath
-            )
-            .antMatchers(HttpMethod.OPTIONS, "/**")
-            .and()
-            .ignoring()
-            .antMatchers(
-                HttpMethod.GET,
-                "/" //Other Stuff You want to Ignore
-            )
-            .and()
-            .ignoring()
-            .antMatchers("/h2-console/**/**");//Should not be in Production!
+                .ignoring()
+                .antMatchers(
+                        HttpMethod.POST,
+                        authenticationPath
+                )
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .and()
+                .ignoring()
+                .antMatchers(
+                        HttpMethod.GET,
+                        "/" //Other Stuff You want to Ignore
+                )
+                .and()
+                .ignoring()
+                .antMatchers("/h2-console/**/**");//Should not be in Production!
     }
 }

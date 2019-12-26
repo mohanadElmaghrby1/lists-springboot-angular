@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,13 +19,13 @@ public class JwtUserDetails implements UserDetails {
   private final String password;
   private final Collection<? extends GrantedAuthority> authorities;
 
-  public JwtUserDetails(Long id, String username, String password, String role) {
+  public JwtUserDetails(Long id, String username, String password, String ...roles) {
     this.id = id;
     this.username = username;
     this.password = password;
 
-    List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
-    authorities.add(new SimpleGrantedAuthority(role));
+    List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+    Arrays.stream(roles).forEach(role -> authorities.add(new SimpleGrantedAuthority(role)));
 
     this.authorities = authorities;
   }
