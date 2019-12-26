@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.domain.Todo;
 import com.example.demo.service.TodoService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  */
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
+@PreAuthorize("hasRole('ROLE_USER')")
 public class TodoController {
 
     private TodoService todoService;
@@ -26,18 +28,20 @@ public class TodoController {
 
     @DeleteMapping("/users/{username}/todos/{id}")
     public void deleteTodo(@PathVariable  String username , @PathVariable String id){
-         todoService.deleteById(Long.parseLong(id));
+         todoService.deleteById(Long.parseLong(id),username);
     }
 
     @GetMapping("/users/{username}/todos/{id}")
     public Todo getTodo(@PathVariable  String username , @PathVariable String id){
-        return todoService.getTodo(Long.parseLong(id));
+        return todoService.getTodo(Long.parseLong(id),username);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/users/{username}/todos")
     public Todo saveOrUpdate(@PathVariable String username , @RequestBody Todo todo){
-        return todoService.save(todo);
+        return todoService.save(todo,username);
     }
+
 
 
 
