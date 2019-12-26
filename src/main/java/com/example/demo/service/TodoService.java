@@ -9,8 +9,8 @@ import java.util.List;
  */
 public interface TodoService  {
     List<Todo> getAllTodos(String username);
-    void deleteById(long id);
-    Todo save(Todo todo);
-    Todo getTodo(long id);
+    void deleteById(long id , String username);
+    Todo save(Todo todo , String username);
+    Todo getTodo(long id, String username);
 }
 

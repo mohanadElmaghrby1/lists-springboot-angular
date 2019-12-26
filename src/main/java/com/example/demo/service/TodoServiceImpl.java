@@ -21,7 +21,7 @@ public class TodoServiceImpl implements TodoService {
         this.todoRepository = todoRepository;
         initialTodos.add(new Todo(1l,"mohannad" , "learn to code",new Date(),false));
         initialTodos.add(new Todo(2l,"mohannad" , "learn to dance",new Date(),false));
-        initialTodos.add(new Todo(2l,"mohannad" , "learn to sleep",new Date(),false));
+        initialTodos.add(new Todo(2l,"in28minutes" , "learn to sleep",new Date(),false));
     }
 
     @Override
@@ -31,17 +31,17 @@ public class TodoServiceImpl implements TodoService {
     }
 
     @Override
-    public void deleteById(long id) {
-        todoRepository.deleteById(id);
+    public void deleteById(long id, String username) {
+        todoRepository.deleteByIdAndUsername(id, username);
     }
 
     @Override
-    public Todo save(Todo todo) {
+    public Todo save(Todo todo, String username) {
         return todoRepository.save(todo);
     }
 
     @Override
-    public Todo getTodo(long id) {
-        return todoRepository.findById(id).get();
+    public Todo getTodo(long id, String username) {
+        return todoRepository.findByIdAndUsername(id,  username).get();
     }
 }

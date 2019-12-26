@@ -21,9 +21,9 @@ public class DemoApplication {
     @Bean
     CommandLineRunner runner(TodoService todoService , PostService postService) {
         return args -> {
-            todoService.save(new Todo(1l,"mohannad" , "learn to code",new Date(),false));
-            todoService.save(new Todo(2l,"mohannad" , "learn to dsance",new Date(),false));
-            todoService.save(new Todo(3l,"mohannad" , "learn to sleep",new Date(),false));
+            todoService.save(new Todo(1l,"mohannad" , "learn to code",new Date(),false),null);
+            todoService.save(new Todo(2l,"mohannad" , "learn to dsance",new Date(),false),null);
+            todoService.save(new Todo(3l,"in28minutes" , "learn to sleep",new Date(),false),null);
 
             postService.save(new Post("SOlid In java","In this tutorial, we'll be discussing the SOLID principles of Object-Oriented Design.\n" +
                     "\n" +
