@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {TodoDataService} from "../service/data/todo-data.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {Todo} from "../list-todos/todo.model";
+import {HttpHeaders} from "@angular/common/http";
+import {HelloWorldBean} from "../service/data/welcome-data.service";
 
 @Component({
   selector: 'app-todo',
@@ -14,7 +16,7 @@ export class TodoComponent implements OnInit {
   todo:Todo
   constructor(private todoService :TodoDataService
               ,private route :ActivatedRoute
-              ,private router :Router ) { }
+              ,private router :Router ,) { }
 
   ngOnInit() {
     this.id= this.route.snapshot.params['id'];
@@ -41,4 +43,5 @@ export class TodoComponent implements OnInit {
       }
     )
   }
+
 }

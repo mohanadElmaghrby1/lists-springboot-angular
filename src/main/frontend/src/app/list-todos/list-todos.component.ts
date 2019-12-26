@@ -16,7 +16,18 @@ export class ListTodosComponent implements OnInit{
               ,private route:Router ) { }
 
   ngOnInit() {
-    // this.todoService.onTodoRemoved.subscribe(this.refreshTodos())
+    console.log("called");
+
+    this.todoService.retrieveAllTodos("mohannad").subscribe(
+      (todos :Todo[]) =>{
+        this.todos=todos;
+        console.log(todos)
+      },
+      error => {
+        console.log("eroooooooooooooor")
+        console.log(error)
+      }
+    )
     this.refreshTodos()
   }
 

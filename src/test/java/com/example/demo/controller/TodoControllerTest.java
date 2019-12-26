@@ -53,7 +53,7 @@ public class TodoControllerTest {
         todo.setDone(false);
         todo.setDescription("study hard");
 
-        when(todoService.getTodo(any())).thenReturn(todo);
+//        when(todoService.getTodo(any())).thenReturn(todo);
 
 //        //when then
 //        mockMvc.perform(get("/users/mohannad/todos/1"))
