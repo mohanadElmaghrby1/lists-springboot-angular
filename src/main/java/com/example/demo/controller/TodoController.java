@@ -30,6 +30,7 @@ public class TodoController {
 
     @DeleteMapping("/users/{username}/todos/{id}")
     public void deleteTodo(@PathVariable  String username , @PathVariable String id){
+        System.out.println("delete "+id);
          todoService.deleteById(Long.parseLong(id),username);
     }
 

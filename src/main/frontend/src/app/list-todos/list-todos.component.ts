@@ -34,6 +34,7 @@ export class ListTodosComponent implements OnInit{
 
 
   deleteTodo(id: number) {
+    console.log("delete todo "+id)
     this.todoService.deleteTodo(id).subscribe(
       response =>{
         console.log('delete todo ' + id)
@@ -52,6 +53,7 @@ export class ListTodosComponent implements OnInit{
   }
 
   updateTodo(id) {
+    console.log("update todo "+id)
     this.route.navigate(['todos',id])
   }
 
